@@ -154,11 +154,13 @@ type StoreContextType = {
   products: Product[]
   orders: Order[]
   categories: string[]
+  isBakeryClosed: boolean
   addProduct: (p: Omit<Product, 'id'>) => Promise<void>
   updateProduct: (p: Product) => Promise<void>
   deleteProduct: (id: string) => Promise<void>
   addCategory: (name: string) => Promise<void>
   deleteCategory: (name: string) => Promise<void>
+  setBakeryClosed: (closed: boolean) => void
   addOrder: (o: Omit<Order, 'id' | 'createdAt'>) => Promise<{ id: string; emailSent: boolean }>
   updateOrderStatus: (id: string, status: Order['status']) => Promise<void>
   updatePaymentReceived: (id: string, paid: boolean) => Promise<void>
@@ -185,6 +187,18 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     }
   })
   const [categories, setCategories] = useState<string[]>(['Cakes', 'Cupcakes', 'Cookies', 'Macarons', 'Bars', 'Tarts', 'Breads', 'Seasonal'])
+  const [isBakeryClosed, setIsBakeryClosed] = useState<boolean>(() => {
+    try {
+      const stored = localStorage.getItem('bakery_closed')
+      return stored ? stored === 'true' : true
+    } catch {
+      return true
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('bakery_closed', String(isBakeryClosed))
+  }, [isBakeryClosed])
 
   useEffect(() => {
     const loadPublicStore = async () => {
@@ -345,8 +359,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setOrders(previous => previous.map(candidate => candidate.id === id ? { ...candidate, paymentReceived: paid } : candidate))
   }
 
+  const setBakeryClosed = (closed: boolean) => setIsBakeryClosed(closed)
+
   return (
-    <StoreContext.Provider value={{ products, orders, categories, addProduct, updateProduct, deleteProduct, addCategory, deleteCategory, addOrder, updateOrderStatus, updatePaymentReceived }}>
+    <StoreContext.Provider value={{ products, orders, categories, isBakeryClosed, addProduct, updateProduct, deleteProduct, addCategory, deleteCategory, setBakeryClosed, addOrder, updateOrderStatus, updatePaymentReceived }}>
       {children}
     </StoreContext.Provider>
   )

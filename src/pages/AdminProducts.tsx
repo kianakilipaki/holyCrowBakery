@@ -19,7 +19,7 @@ const EMPTY_FORM: FormData = {
 
 export default function AdminProducts() {
   const navigate = useNavigate()
-  const { products, categories, addProduct, updateProduct, deleteProduct, addCategory: saveCategory, deleteCategory } = useStore()
+  const { products, categories, isBakeryClosed, addProduct, updateProduct, deleteProduct, addCategory: saveCategory, deleteCategory, setBakeryClosed } = useStore()
   const [showForm, setShowForm] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState<FormData>(EMPTY_FORM)
@@ -179,6 +179,33 @@ export default function AdminProducts() {
           >
             <Plus size={16} />
             Add Item
+          </button>
+        </div>
+
+        <div className="mb-8 flex flex-col gap-4 rounded-2xl border p-4 sm:flex-row sm:items-center sm:justify-between"
+          style={{ backgroundColor: '#0e0c08', borderColor: 'rgba(208,148,173,0.15)' }}>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.22rem] text-[#d094ad]" style={{ fontFamily: 'Cinzel, serif' }}>
+              Store Status
+            </p>
+            <p className="mt-1 text-sm text-[#fcf6e8] opacity-80" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              {isBakeryClosed ? 'The bakery is currently closed to new orders.' : 'The bakery is accepting online orders.'}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setBakeryClosed(!isBakeryClosed)}
+            className="inline-flex items-center gap-3 rounded-full px-4 py-2 text-sm font-semibold transition-all"
+            style={{
+              backgroundColor: isBakeryClosed ? '#7a1f2d' : '#9da23d',
+              color: '#fcf6e8',
+              fontFamily: 'Cinzel, serif',
+            }}
+          >
+            <span className="relative inline-flex h-6 w-11 items-center rounded-full border border-white/15" style={{ backgroundColor: isBakeryClosed ? '#41212b' : '#dfe8a1' }}>
+              <span className={`inline-block h-4 w-4 rounded-full bg-[#fcf6e8] transition-transform ${isBakeryClosed ? 'translate-x-1' : 'translate-x-6'}`} />
+            </span>
+            {isBakeryClosed ? 'Closed' : 'Open'}
           </button>
         </div>
 

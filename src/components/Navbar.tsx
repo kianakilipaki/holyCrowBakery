@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { ShoppingBag, Menu, X, MapPin } from 'lucide-react'
 import { useCart } from '../context/CartContext'
+import { useStore } from '../context/StoreContext'
 import icon from '../assets/icon.png'
 import banner from '../assets/banner.png'
 
 export default function Navbar() {
   const { totalItems, setIsOpen } = useCart()
+  const { isBakeryClosed } = useStore()
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const links = [
@@ -15,8 +17,15 @@ export default function Navbar() {
   ]
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-transparent"
+    <>
+      {isBakeryClosed && (
+        <div className="fixed left-0 right-0 top-0 z-[60] w-full border-b border-[#f0c2d8] bg-[#7a1f2d] px-4 py-3 text-center text-sm font-semibold tracking-[0.18em] uppercase text-[#fffaf5]"
+          style={{ fontFamily: 'Cinzel, serif' }}>
+          Bakery is closed until further notice.
+        </div>
+      )}
+      <nav
+      className={`fixed left-0 right-0 z-50 bg-transparent ${isBakeryClosed ? 'top-[44px]' : 'top-0'}`}
     >
       <div
         className="w-full"
@@ -76,8 +85,9 @@ export default function Navbar() {
             <span className="hidden text-[10px] uppercase tracking-wider lg:inline" style={{ fontFamily: 'Cinzel, serif' }}>Daybreak, UT</span>
           </a>
           <button
-            onClick={() => setIsOpen(true)}
-            className="relative cursor-pointer rounded-full p-2 text-[#fcf6e8] transition-all hover:bg-[#d094ad]/15 hover:text-[#d094ad] active:scale-90 active:bg-[#d094ad]/30 active:text-[#d094ad]"
+            onClick={() => !isBakeryClosed && setIsOpen(true)}
+            disabled={isBakeryClosed}
+            className="relative cursor-pointer rounded-full p-2 text-[#fcf6e8] transition-all hover:bg-[#d094ad]/15 hover:text-[#d094ad] active:scale-90 active:bg-[#d094ad]/30 active:text-[#d094ad] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-[#fcf6e8]"
             aria-label="Open cart"
           >
             <ShoppingBag size={20} />
@@ -131,5 +141,6 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+    </>
   )
 }

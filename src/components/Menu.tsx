@@ -26,7 +26,7 @@ function FancyMenuBorder({ position }: { position: 'top' | 'bottom' }) {
 }
 
 export default function Menu() {
-  const { products } = useStore()
+  const { products, isBakeryClosed } = useStore()
   const { addItem, totalItems, setIsOpen } = useCart()
   const [justAdded, setJustAdded] = useState<string | null>(null)
   const [maxMessage, setMaxMessage] = useState<string | null>(null)
@@ -47,6 +47,11 @@ export default function Menu() {
   }
 
   const handleAdd = (product: Product) => {
+    if (isBakeryClosed) {
+      setMaxMessage('The bakery is currently closed until further notice.')
+      setTimeout(() => setMaxMessage(null), 3000)
+      return
+    }
     const success = addItem({ productId: product.id, productName: product.name, price: product.price, maxQuantity: product.maxQuantity })
     if (!success) {
       setMaxMessage(`Limit reached — maximum ${product.maxQuantity} of ${product.name}`)
@@ -151,6 +156,7 @@ export default function Menu() {
                   </span>
                   <button
                     onClick={() => handleAdd(product)}
+                    disabled={isBakeryClosed}
                     className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
                     style={{
                       fontFamily: 'Nunito, sans-serif',
@@ -158,7 +164,9 @@ export default function Menu() {
                       color: '#fcf6e8',
                     }}
                   >
-                    {justAdded === product.id ? (
+                    {isBakeryClosed ? (
+                      'Closed'
+                    ) : justAdded === product.id ? (
                       <><Check size={13} /> Added</>
                     ) : (
                       <><Plus size={13} /> Add</>
