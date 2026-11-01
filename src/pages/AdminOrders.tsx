@@ -104,7 +104,7 @@ export default function AdminOrders() {
               <p className="text-2xl font-bold mb-1" style={{ fontFamily: 'Cinzel, serif', color: stat.color }}>
                 {stat.value}
               </p>
-              <p className="text-xs opacity-50 text-[#fcf6e8]" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              <p className="text-xs opacity-80 text-[#fffaf5]" style={{ fontFamily: 'Nunito, sans-serif' }}>
                 {stat.label}
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function AdminOrders() {
                         </span>
                       )}
                     </div>
-                    <p className="text-xs text-[#fcf6e8] opacity-40" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                    <p className="text-xs text-[#fff7f1] opacity-80" style={{ fontFamily: 'Nunito, sans-serif' }}>
                       #{order.id} · {new Date(order.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </p>
                   </div>
@@ -186,7 +186,12 @@ export default function AdminOrders() {
                   )}
                   <span
                     className="rounded-full px-3 py-1.5 text-[11px] font-bold tracking-wide"
-                    style={{ ...STATUS_COLORS[order.status], fontFamily: 'Nunito, sans-serif', border: `1px solid ${STATUS_COLORS[order.status].border}` }}
+                    style={{
+                      backgroundColor: STATUS_COLORS[order.status].bg,
+                      color: STATUS_COLORS[order.status].text,
+                      border: `1px solid ${STATUS_COLORS[order.status].border}`,
+                      fontFamily: 'Nunito, sans-serif',
+                    }}
                   >
                     {STATUS_LABELS[order.status]}
                   </span>
@@ -199,11 +204,11 @@ export default function AdminOrders() {
                 <div className="px-6 pb-6 space-y-4" style={{ borderTop: '1px solid rgba(208,148,173,0.08)' }}>
                   <div className="grid sm:grid-cols-2 gap-4 pt-4">
                     <div className="space-y-1.5 text-xs" style={{ fontFamily: 'Nunito, sans-serif' }}>
-                      <p><span className="text-[#d094ad]">Email:</span> <span className="text-[#fcf6e8] opacity-70">{order.email}</span></p>
-                      {order.phone && <p><span className="text-[#d094ad]">Phone:</span> <span className="text-[#fcf6e8] opacity-70">{order.phone}</span></p>}
-                      {order.notes && <p><span className="text-[#d094ad]">Notes:</span> <span className="text-[#fcf6e8] opacity-70">{order.notes}</span></p>}
+                      <p><span className="text-[#d094ad]">Email:</span> <span className="text-[#fffaf5] opacity-90">{order.email}</span></p>
+                      {order.phone && <p><span className="text-[#d094ad]">Phone:</span> <span className="text-[#fffaf5] opacity-90">{order.phone}</span></p>}
+                      {order.notes && <p><span className="text-[#d094ad]">Notes:</span> <span className="text-[#fffaf5] opacity-90">{order.notes}</span></p>}
                       {order.customDescription && (
-                        <p><span className="text-[#d094ad]">Custom Request:</span> <span className="text-[#fcf6e8] opacity-70">{order.customDescription}</span></p>
+                        <p><span className="text-[#d094ad]">Custom Request:</span> <span className="text-[#fffaf5] opacity-90">{order.customDescription}</span></p>
                       )}
                     </div>
 
@@ -212,7 +217,7 @@ export default function AdminOrders() {
                         <p className="text-xs text-[#d094ad] mb-2" style={{ fontFamily: 'Cinzel, serif', letterSpacing: '0.05em' }}>Items Ordered</p>
                         <div className="space-y-1">
                           {order.items.map((item, i) => (
-                            <div key={i} className="flex justify-between text-xs text-[#fcf6e8] opacity-60" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                            <div key={i} className="flex justify-between text-xs text-[#fffaf5] opacity-90" style={{ fontFamily: 'Nunito, sans-serif' }}>
                               <span>{item.productName} × {item.quantity}</span>
                               <span>${(item.price * item.quantity).toFixed(2)}</span>
                             </div>

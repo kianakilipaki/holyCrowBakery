@@ -85,15 +85,15 @@ export default function Footer() {
           <a href="#contact" className="hover:text-[#d094ad] hover:opacity-100 transition-colors">Order</a>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[#fcf6e8]/5 flex items-center justify-between text-xs text-[#fcf6e8] opacity-20"
+        <div className="mt-12 pt-6 border-t border-[#fcf6e8]/5 flex flex-col items-center justify-between gap-3 text-xs text-[#fcf6e8] opacity-20 sm:flex-row"
           style={{ fontFamily: 'Nunito, sans-serif' }}>
           <span>© 2026 Holy Crow Bakery. All rights reserved.</span>
           <button
             onClick={() => navigate('/admin')}
-            className="hover:opacity-60 transition-opacity"
+            className="rounded-full border border-[#d094ad]/30 bg-[#d094ad]/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-[#fcf6e8] transition-colors hover:border-[#d094ad]/60 hover:bg-[#d094ad]/20 hover:opacity-100"
             aria-label="Owner login"
           >
-            ✦
+            Owner Login
           </button>
         </div>
       </div>
