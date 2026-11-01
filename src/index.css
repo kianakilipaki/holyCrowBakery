@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+
+@theme {
+  --color-cream: #fcf6e8;
+  --color-dark: #0e0c08;
+  --color-gold: #ef9800;
+  --color-sage: #9da23d;
+  --color-mauve: #d094ad;
+  --color-mauve-light: #e8c5d9;
+  --color-mauve-dark: #b06a8a;
+  --color-dark-card: #1a1e1f;
+  --color-mid: #3d4547;
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+:root {
+  --background: #fcf6e8;
+  --foreground: #0e0c08;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(5.13vw + 5rem);
+}
+
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: calc(5.13vw + 4rem);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fcf6e8; }
+::-webkit-scrollbar-thumb { background: #d094ad; border-radius: 3px; }
+
+/* Decorative ornament divider */
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '⋆ ✦ ⋆';
+  color: #d094ad;
+  letter-spacing: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Selection */
+::selection {
+  background: #d094ad;
+  color: #fcf6e8;
+}

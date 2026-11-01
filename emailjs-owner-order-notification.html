@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Holy Crow Bakery Order</title>
+  </head>
+  <body style="margin:0; padding:0; background-color:#eee5e8; color:#0e0c08;">
+    <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">
+      New order #{{order_id}} from {{customer_name}} for ${{order_total}}.
+    </div>
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; background-color:#eee5e8;">
+      <tr>
+        <td align="center" style="padding:28px 12px;">
+          <table role="presentation" width="620" cellspacing="0" cellpadding="0" border="0" style="width:100%; max-width:620px; background-color:#fffaf0; border:1px solid #dbc5ce; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(14,12,8,0.12);">
+            <tr>
+              <td style="background-color:#0e0c08; padding:28px 32px; border-bottom:5px solid #ef9800;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+                  <tr>
+                    <td valign="middle">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:3px; text-transform:uppercase; color:#d094ad; margin-bottom:7px;">
+                        New website order
+                      </div>
+                      <div style="font-family:Georgia, 'Times New Roman', serif; font-size:25px; color:#fcf6e8;">
+                        Holy Crow Bakery
+                      </div>
+                    </td>
+                    <td align="right" valign="middle">
+                      <div style="display:inline-block; background-color:#ef9800; border-radius:999px; color:#0e0c08; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold; letter-spacing:1px; padding:10px 15px; text-transform:uppercase;">
+                        Action needed
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:32px 32px 16px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+                  <tr>
+                    <td valign="bottom">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; color:#9c5675; margin-bottom:5px;">
+                        Order number
+                      </div>
+                      <div style="font-family:Georgia, 'Times New Roman', serif; font-size:25px; font-weight:bold; color:#0e0c08;">
+                        #{{order_id}}
+                      </div>
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#756d64; margin-top:5px;">
+                        Submitted {{order_date}}
+                      </div>
+                    </td>
+                    <td align="right" valign="bottom">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; color:#9c5675; margin-bottom:5px;">
+                        Order total
+                      </div>
+                      <div style="font-family:Georgia, 'Times New Roman', serif; font-size:28px; font-weight:bold; color:#0e0c08;">
+                        ${{order_total}}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:16px 32px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; background-color:#f7dfe9; border:1px solid #e2b8ca; border-radius:14px;">
+                  <tr>
+                    <td colspan="2" style="padding:19px 20px 12px; font-family:Georgia, 'Times New Roman', serif; font-size:17px; font-weight:bold; color:#0e0c08;">
+                      Customer details
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" width="50%" style="padding:4px 10px 20px 20px;">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#9c5675; margin-bottom:5px;">Name</div>
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#38332e;">{{customer_name}}</div>
+                    </td>
+                    <td valign="top" width="50%" style="padding:4px 20px 20px 10px;">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#9c5675; margin-bottom:5px;">Phone</div>
+                      <a href="tel:{{customer_phone}}" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#0e0c08; text-decoration:underline;">{{customer_phone}}</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding:0 20px 20px;">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#9c5675; margin-bottom:5px;">Email</div>
+                      <a href="mailto:{{customer_email}}?subject=Your%20Holy%20Crow%20Bakery%20Order%20%23{{order_id}}" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#0e0c08; text-decoration:underline; word-break:break-all;">{{customer_email}}</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:10px 32px 16px;">
+                <div style="font-family:Georgia, 'Times New Roman', serif; font-size:18px; font-weight:bold; color:#0e0c08; margin-bottom:11px;">
+                  Items ordered
+                </div>
+                <div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.85; white-space:pre-line; color:#38332e; background-color:#fffdf8; border:1px solid #e6d9dd; border-radius:12px; padding:17px 19px;">{{order_items}}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:10px 32px 16px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; background-color:#fff6df; border-left:4px solid #ef9800; border-radius:10px;">
+                  <tr>
+                    <td style="padding:17px 19px;">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; color:#9b6500; margin-bottom:7px;">
+                        Customer notes / allergy information
+                      </div>
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.6; white-space:pre-line; color:#514b43;">{{customer_notes}}</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="padding:10px 32px 26px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; border-top:1px solid #e6d9dd; border-bottom:1px solid #e6d9dd;">
+                  <tr>
+                    <td valign="top" width="50%" style="padding:17px 10px 17px 0;">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; color:#9c5675; margin-bottom:6px;">Pickup</div>
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:1.5; color:#514b43;">Saturday<br>Daybreak, South Jordan</div>
+                    </td>
+                    <td valign="top" width="50%" style="padding:17px 0 17px 10px;">
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; color:#9c5675; margin-bottom:6px;">Payment</div>
+                      <div style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:1.5; color:#514b43;">Customer may pay through Venmo or in person at pickup.</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="center" style="padding:0 32px 34px;">
+                <a href="mailto:{{customer_email}}?subject=Your%20Holy%20Crow%20Bakery%20Order%20%23{{order_id}}" style="display:inline-block; background-color:#0e0c08; border:2px solid #d094ad; border-radius:999px; color:#fcf6e8; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; letter-spacing:1px; padding:13px 24px; text-decoration:none; text-transform:uppercase;">
+                  Reply to customer
+                </a>
+                <a href="https://holycrowbakery.com/admin/orders" style="display:inline-block; background-color:#d094ad; border:2px solid #d094ad; border-radius:999px; color:#0e0c08; font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; letter-spacing:1px; margin:8px 0 0 8px; padding:13px 24px; text-decoration:none; text-transform:uppercase;">
+                  Open Admin Orders
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="center" style="background-color:#0e0c08; padding:22px 24px;">
+                <div style="font-family:Georgia, 'Times New Roman', serif; font-size:14px; color:#fcf6e8;">
+                  Holy Crow Bakery • Owner Order Notification
+                </div>
+                <div style="font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#9e978d; margin-top:7px;">
+                  Keep this email for your order records.
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.supabase/
+supabase/.temp/
+.github/
+.figma/
+package-lock.json
+*.log
