@@ -40,6 +40,20 @@ export default function AdminLogin() {
     }
   }
 
+  const handlePasswordResetRequest = async () => {
+    setError('')
+    try {
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(OWNER_EMAIL, {
+        redirectTo: `${window.location.origin}/admin/reset`,
+      })
+      if (resetError) throw resetError
+      setError('Password reset email sent to the owner inbox.')
+    } catch (resetError) {
+      const message = resetError instanceof Error ? resetError.message : 'Unable to send a password reset email.'
+      setError(message)
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{ backgroundColor: '#0e0c08' }}>
@@ -112,6 +126,15 @@ export default function AdminLogin() {
             style={{ backgroundColor: '#d094ad', color: '#fcf6e8', fontFamily: 'Cinzel, serif' }}
           >
             {submitting ? 'Checking…' : 'Enter ✦'}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => void handlePasswordResetRequest()}
+            className="mt-3 block w-full text-center text-[9px] uppercase tracking-[0.18em] opacity-60 transition-opacity hover:opacity-100"
+            style={{ color: '#fcf6e8', fontFamily: 'Cinzel, serif' }}
+          >
+            Forgot/Change Password
           </button>
         </form>
 

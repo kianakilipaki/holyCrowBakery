@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import AdminLogin from './pages/AdminLogin'
 import AdminProducts from './pages/AdminProducts'
 import AdminOrders from './pages/AdminOrders'
+import AdminResetPassword from './pages/AdminResetPassword'
 import { supabase } from './lib/supabase'
 
 function AdminGuard({ children }: { children: React.ReactNode }) {
@@ -32,6 +33,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/reset" element={<AdminResetPassword />} />
             <Route path="/admin/products" element={<AdminGuard><AdminProducts /></AdminGuard>} />
             <Route path="/admin/orders" element={<AdminGuard><AdminOrders /></AdminGuard>} />
             <Route path="*" element={<Navigate to="/" replace />} />
