@@ -9,15 +9,6 @@
     <!-- figma:head-end -->
   </head>
   <body>
-    <script>
-      ;(() => {
-        const route = sessionStorage.getItem('holy-crow-route')
-        if (route) {
-          sessionStorage.removeItem('holy-crow-route')
-          history.replaceState(null, '', route)
-        }
-      })()
-    </script>
     <!-- figma:body-start -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

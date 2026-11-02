@@ -69,8 +69,12 @@ Required setup:
   - VITE_SUPABASE_URL
   - VITE_SUPABASE_PUBLISHABLE_KEY
 - GitHub Pages should deploy from the repository's GitHub Actions workflow, not from the repo root
-- The app uses a GitHub Pages base path of `/holyCrowBakery/` in production builds
-- The build includes a 404.html fallback for client-side routes
+- In Settings > Pages, set Source to **GitHub Actions** and Custom domain to **holycrowbakery.com** (matching `public/CNAME`). A CNAME file alone does not configure a custom domain for an Actions deployment.
+- The workflow reads the actual Pages base path with `actions/configure-pages`: `/` for the custom domain, or `/holyCrowBakery/` for a project URL. Assets, router navigation, and password-reset URLs use that same base.
+- Local Pages builds use `DEPLOY_TARGET=github-pages` and infer `/` from `public/CNAME`. Set `PAGES_BASE_PATH=/holyCrowBakery` to test a project URL instead.
+- The build generates `dist/404.html` from the built app shell so direct admin links and refreshes load the router without redirecting away from the requested URL.
+- Allow the deployed password-reset URL in Supabase Auth > URL Configuration: `https://holycrowbakery.com/admin/reset` (or the equivalent project URL if using that).
+- Figma's ignored `.figma/make/site.json` is optional. A clean GitHub checkout must build without it.
 
 ## Notes
 

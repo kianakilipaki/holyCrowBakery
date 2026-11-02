@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Lock, Eye, EyeOff } from 'lucide-react'
 import { getLockoutEnd, recordFailedLogin, resetFailedLogins } from '../utils/adminAuth'
 import { supabase } from '../lib/supabase'
@@ -44,7 +44,7 @@ export default function AdminLogin() {
     setError('')
     try {
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(OWNER_EMAIL, {
-        redirectTo: `${window.location.origin}/admin/reset`,
+        redirectTo: new URL(`${import.meta.env.BASE_URL}admin/reset`, window.location.origin).href,
       })
       if (resetError) throw resetError
       setError('Password reset email sent to the owner inbox.')
@@ -64,11 +64,11 @@ export default function AdminLogin() {
       <div className="w-full max-w-sm mx-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <a href="/" className="inline-block mb-6">
+          <Link to="/" className="inline-block mb-6">
             <p className="text-xl tracking-widest text-[#fcf6e8]" style={{ fontFamily: 'Cinzel Decorative, serif' }}>
               Holy Crow Bakery
             </p>
-          </a>
+          </Link>
           <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
             style={{ backgroundColor: 'rgba(208,148,173,0.15)', border: '1px solid rgba(208,148,173,0.3)' }}>
             <Lock size={20} style={{ color: '#d094ad' }} />
@@ -139,10 +139,10 @@ export default function AdminLogin() {
         </form>
 
         <div className="text-center mt-6">
-          <a href="/" className="text-xs text-[#fcf6e8] opacity-30 hover:opacity-50 transition-opacity"
+          <Link to="/" className="text-xs text-[#fcf6e8] opacity-30 hover:opacity-50 transition-opacity"
             style={{ fontFamily: 'Nunito, sans-serif' }}>
             ← Back to Holy Crow Bakery
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,9 +1,13 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
 import path from 'node:path'
 
-import siteConfiguration from './.figma/make/site.json'
+const figmaSiteJsonPath = path.resolve(__dirname, '.figma/make/site.json')
+const siteConfiguration = fs.existsSync(figmaSiteJsonPath)
+  ? JSON.parse(fs.readFileSync(figmaSiteJsonPath, 'utf-8'))
+  : {}
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -11,9 +15,14 @@ export default defineConfig(({ mode }) => {
   const emitSourcemaps = mode === 'development'
   const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1] || 'holyCrowBakery'
   const isGithubPages = process.env.GITHUB_ACTIONS === 'true' || process.env.DEPLOY_TARGET === 'github-pages'
+  const cnamePath = path.resolve(__dirname, 'public/CNAME')
+  const hasCustomDomain = fs.existsSync(cnamePath) && Boolean(fs.readFileSync(cnamePath, 'utf-8').trim())
+  // The Pages action knows whether this site uses a custom domain or a repo subpath.
+  // Fall back to CNAME for local Pages builds; custom domains serve from the root.
+  const pagesBasePath = process.env.PAGES_BASE_PATH ?? (hasCustomDomain ? '' : `/${repoName}`)
 
   return {
-    base: isGithubPages ? `/${repoName}/` : process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+    base: isGithubPages ? `${pagesBasePath.replace(/\/+$/, '')}/` : process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,

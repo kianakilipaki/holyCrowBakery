@@ -29,7 +29,7 @@ export default function App() {
   return (
     <StoreProvider>
       <CartProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={new URL(import.meta.env.BASE_URL, window.location.origin).pathname}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/admin" element={<AdminLogin />} />
