@@ -2,6 +2,9 @@ node_modules/
 .env
 .env.*
 !.env.example
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
 .supabase/
 supabase/.temp/
 .figma/
