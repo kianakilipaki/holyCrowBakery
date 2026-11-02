@@ -59,10 +59,18 @@ Important: if a browser clears local storage, the bakery will reopen automatical
 - Confirm the bakery closure toggle still works
 - Confirm email sending still works for order confirmation and owner notices
 
-## GitHub
+## GitHub Pages deployment
 
-Repository:
-https://github.com/kianakilipaki/holyCrowBakery
+This app is built as a static frontend and can be deployed to GitHub Pages.
+
+Required setup:
+- Repository URL: https://github.com/kianakilipaki/holyCrowBakery
+- Add the Supabase environment values locally or in GitHub Actions secrets:
+  - VITE_SUPABASE_URL
+  - VITE_SUPABASE_PUBLISHABLE_KEY
+- GitHub Pages should deploy from the repository's GitHub Actions workflow, not from the repo root
+- The app uses a GitHub Pages base path of `/holyCrowBakery/` in production builds
+- The build includes a 404.html fallback for client-side routes
 
 ## Notes
 
