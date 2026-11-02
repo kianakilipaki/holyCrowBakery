@@ -4,7 +4,6 @@ node_modules/
 !.env.example
 .supabase/
 supabase/.temp/
-.github/
 .figma/
 package-lock.json
 *.log
